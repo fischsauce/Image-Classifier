@@ -74,11 +74,22 @@ async function app() {
       // Get the most likely class and confidences from the classifier module.
       const result = await classifier.predictClass(activation);
 
+
+
       const classes = ['A', 'B', 'C'];
-      document.getElementById('console').innerText = `
+
+      //console.log(result.confidences);
+
+      if((result.confidences[result.classIndex]) <= 0.667) {
+        document.getElementById('console').innerText = `
+          *** ALERT! *** I have no idea what that is! \n
+          probability: ${result.confidences[result.classIndex].toFixed(2)} is too to risk my robotic reputation! \n Trust your own judgement, Human!
+        `;
+      } else {document.getElementById('console').innerText = `
         prediction: ${classes[result.classIndex]}\n
-        probability: ${result.confidences[result.classIndex]}
+        probability: ${result.confidences[result.classIndex].toFixed(2)}
       `;
+      }
     }
     await tf.nextFrame();
   }
