@@ -1,0 +1,158 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  height: 100vh;
+  width: 100%;
+  background: black;
+  background-image: url(./bg3.png);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.title{
+  background-color: #262B49;
+  height: 10vh;
+  width: 100%;
+  padding:20px;
+  text-align: center;
+  font-size: 1.25em;
+  color: #bcecff;
+  font-family: 'Livvic', sans-serif;
+  text-shadow: 2px 2px black;
+  filter    : drop-shadow(1.5px 1.5px 0px black);
+  opacity: 0.9;
+}
+
+.capture_section{
+  height: 34vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+}
+#webcam{
+  filter: drop-shadow(3px 3px 0px black);
+  /* height: 100%; */
+}
+.capture_buttons{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.button_capture{
+  cursor: pointer;
+  color: #AAD5E6;
+  background-color: #5e7680;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+  border: 2px solid #AAD5E6;
+  border-radius: 5px;
+  width: 80px;
+  margin: 20px 0px 0px 40px;
+}
+
+.results_section{
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  width:60%;
+  align-content:   center;
+  justify-content: center;
+}
+.instructions{
+  width: 100%;
+  text-align: center;
+  color: #AAD5E6;
+  padding: 10px;
+  font-family:'Livvic', sans-serif;
+  font-size: 1.3em;
+  filter    : drop-shadow(1.5px 1.5px 0px black);
+}
+.results{
+  padding:15px;
+  background-color: #AAD5E6;
+  background: opacity(1);
+  font-family: 'Livvic', sans-serif;
+  width: 100%;
+  height: 200px;
+  font-size: 1em;
+  text-align: left;
+  border: 2px solid #5D6063;
+  padding: 10px;
+
+}
+.results-title{
+  font-family: 'Livvic', sans-serif;
+  font-size: 1.5em;
+  padding:20px;
+  text-align: center;
+  color: #AAD5E6;
+  filter: drop-shadow(1.5px 1.5px 0px #172029);
+
+}
+#console{
+  font-family: 'Livvic', sans-serif;
+  width: 100%;
+  font-size: 1.3em;
+  text-align: center;
+  justify-content: flex-start;
+}
+
+.extras{
+  font-family: 'Livvic', sans-serif;
+  font-size: 1.2em;
+  text-align: center;
+  justify-content: flex-end;
+}
+.upload_buttons{
+  display: flex;
+  justify-content: center;
+}
+.button_upload{
+  cursor: pointer;
+  color: #FFF;
+  background-color: #262B49;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+  border: 2px solid #AAD5E6;
+  border-radius: 5px;
+  width: 100px;
+  margin: 0px 10px;
+}
+
+.highlight{
+  background-color: lightgreen;
+}
+
+#loading_bar{
+  text-align: center;
+  font-family: 'Livvic', sans-serif;
+  font-size: 1.4em;
+}
+
+footer{
+  display: flex;
+  background-color: #7a99a5;
+  width:100%;
+  height:6vh;
+  justify-content: space-around;
+  opacity: 0.8;
+}
+
+.footer_item{
+  display: flex;
+
+  font-family: 'Livvic', sans-serif;
+  padding: 20px;
+  font-size: 1em;
+
+}
+.footer_item a{
+  text-decoration: none;
+}

@@ -1,164 +1,17 @@
 <html>
   <head>
-    <!-- Load the latest version of TensorFlow.js -->
+    <title>Train your own Image Classifier!</title>
     <script src="https://unpkg.com/@tensorflow/tfjs"></script>
     <script src="https://unpkg.com/@tensorflow-models/mobilenet"></script>
     <script src="https://unpkg.com/@tensorflow-models/knn-classifier"></script>
-
-
-    <link href="https://fonts.googleapis.com/css?family=Lexend+Peta&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Livvic&display=swap" rel="stylesheet">
-
-    <style>
-    *{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-
-  }
-
-    body{
-      height: 100vh;
-      width: 100%;
-      background-color: skyblue;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      /* overflow: hidden; */
-    }
-
-    .title{
-      height: 10vh;
-      width: 100%;
-
-      /* margin-top: 20px; */
-      text-align: center;
-      font-family: 'Livvic', sans-serif;
-      filter    : drop-shadow(1.5px 1.5px 0px #f4f4f4);
-      /* font-size: 0.8em; */
-    }
-
-    .capture_section{
-      height: 30vh;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-
-    }
-    #webcam{
-      filter: drop-shadow(3px 3px 0px #25473d);
-      /* height: 100%; */
-    }
-    .capture_buttons{
-      display: flex;
-      flex-direction: column;
-      /* align-items: center; */
-      justify-content: center;
-    }
-    .button_capture{
-      cursor: pointer;
-      color: #FFF;
-      background-color: #5995DA;    /* Blue */
-      font-weight: bold;
-      padding: 10px;
-      text-align: center;
-      border: 2px solid #5D6063;    /* Dark gray */
-      border-radius: 5px;
-      width: 80px;
-      margin: 20px 0px 0px 40px;
-    }
-
-    .results_section{
-      height: 50vh;
-      display: flex;
-      flex-direction: column;
-      width:60%;
-      align-content:   center;
-      justify-content: center;
-      /* border:2px solid #5D6063; */
-    }
-    .instructions{
-
-      width: 100%;
-      text-align: center;
-      font-family:'Livvic', sans-serif;
-      font-size: 1.2em;
-    }
-    .results{
-      font-family: 'Livvic', sans-serif;
-      width: 100%;
-      height: 200px;
-      font-size: 1em;
-      text-align: left;
-      /* justify-content: flex-start; */
-      border: 2px solid #5D6063;
-      padding: 10px;
-
-    }
-    .results-title{
-      font-family: 'Livvic', sans-serif;
-      font-size: 1.3em;
-      text-align: center;
-      color: #f4f4f4;
-        filter    : drop-shadow(1.5px 1.5px 0px darkgrey);
-      /* justify-content: flex-start; */
-
-    }
-    #console{
-      font-family: 'Livvic', sans-serif;
-      width: 100%;
-      font-size: 1.3em;
-      text-align: left;
-      justify-content: flex-start;
-    }
-
-    .extras{
-      /* height: 10vh; */
-      font-family: 'Livvic', sans-serif;
-      font-size: 1.2em;
-      text-align: center;
-      justify-content: flex-end;
-      /* align-self: flex-end; */
-
-    }
-    .upload_buttons{
-      display: flex;
-      /* flex-direction: column; */
-      /* align-items: center; */
-      justify-content: center;
-    }
-    .button_upload{
-      cursor: pointer;
-      color: #FFF;
-      background-color: #5995DA;    /* Blue */
-      font-weight: bold;
-      padding: 10px;
-      text-align: center;
-      border: 2px solid #5D6063;    /* Dark gray */
-      border-radius: 5px;
-      width: 100px;
-      margin: 0px 10px;
-    }
-
-    .highlight{
-      background-color: lightgreen;
-    }
-
-    </style>
+    <link rel="stylesheet" type="text/css" href="./assets/style.css">
   </head>
 
   <body>
-
-
-    <!-- <div id="console"></div> -->
-    <!-- Add an image that we will use to test -->
-    <!-- <img id="img" crossOrigin src="https://i.imgur.com/JlUvsxa.jpg" width=227 height=227/> -->
-
     <div class="title">
-        <h1>Train your own KNN Image Classifier!</h1>
+        <h1>Train your own Image Classifier!</h1>
     </div>
-
     <div class="capture_section">
       <!-- Access the user's webcam, and display the output: -->
       <video autoplay playsinline muted id="webcam" height="300px" width="300px" ></video>
@@ -169,37 +22,39 @@
         <button class="button_capture" id="class-c">Add C</button>
       </div>
     </div>
-
     <div class="results_section">
-
       <div class="instructions">
         <h4>Use the buttons to add images from the webcam to each class.</h4>
-        <p><strong>Pro tip!</strong>&nbsp More images & various angles will increase the model's accuracy</p>
-        </p>
       </div>
-
       <div class="results-title">
         <h2>Results:</h2>
       </div>
-      <div class="results">
-
+      <div class="results no-class">
+        <div id="loading_bar"></div>
         <div id="console"></div>
       </div>
-
-      <div class="extras">
-        <p> For flexibility, try uploading your own images:</p>
-        <div class="upload_buttons">
-          <button class="button_upload" id="ul-class-a">Upload A</button>
-          <button class="button_upload" id="ul-class-b">Upload B</button>
-          <button class="button_upload" id="ul-class-c">Upload C</button>
-        </div>
+      <div class="instructions">
+        <p><strong>Pro tip!</strong>&nbsp More images & various angles will increase the model's accuracy</p>
       </div>
     </div>
 
     <!-- Load index.js after the content of the page -->
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
     <script src="./index.js"></script>
 
   </body>
+
+  <footer>
+    <div class="footer_item">
+      <p>Based on a tutorial from <a href="https://www.tensorflow.org/js/tutorials/transfer/image_classification">Tensorflow.JS</p>&nbsp;
+        <img src="./assets/tf.svg" height="20px"></a>
+    </div>
+    <div class="footer_item">
+      <p>Check out the code on <a href="https://github.com/fischsauce/Image-Classifier">GitHub</p>&nbsp;
+          <img src="./assets/github.svg" height="20px"></a>
+    </div>
+    <div class="footer_item">
+      <p>Photo by Florian Weihmann from Pexels</p>
+    </div>
+  </footer>
 </html>
