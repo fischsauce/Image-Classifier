@@ -1,5 +1,5 @@
 # Image-Classifier
-A simple image classifier built with Tensorflow.js. This is not a hotdog.
+This is a simple image classifier built with Tensorflow.js. This is not a hotdog.
 
 
 Based on the tutorial available at:
