@@ -1,4 +1,4 @@
-# Image-Classifier
+# Image-Classifier (not a hotdog)
 A simple image classifier built with Tensorflow.js.
 
 Based on the tutorial available at:
